@@ -1,0 +1,11 @@
+@charset "utf-8";
+::before, ::after, *{margin: 0px;padding:0px;box-sizing: border-box;list-style: none;text-decoration: none;outline: none;}
+body{margin: 0px auto;overflow: hidden;min-height:100vh;}
+body .container{min-height:inherit;display: flex;justify-content: center;align-items: center;}
+body .container .circleParent{width: 200px;height:200px;border-radius: 50%;background-color:#04210400;animation:heuColor 1.5s linear infinite;}
+body .container .circleParent .circle{--value:20px;width: var(--value);height: var(--value);border-radius: 50%;position: absolute;left: 50%;transform-origin: calc(var(--value) / 2) 100px;transform:translateX(-50%) rotate(calc(18deg * var(--i)));}
+body .container .circleParent .circle::before{content: '';width: 100%;height: 100%;background-color: #00ff0a;box-shadow: 0px 0px 8px #00ff0a;display: block;border: 2px solid #fff;border-radius: 50%;transform: scale(0);animation:move 1.5s linear infinite;animation-delay: calc(var(--i) * .075s);}    /*0.06 == 1.5s of animatin duration / number of circle => 1.5s / 18 = 0.06s */
+@keyframes move{0%{transform:scale(0);}100%{transform: scale(1);}}
+@keyframes heuColor{0%{filter: hue-rotate(0deg);}100%{filter: hue-rotate(360deg);}}
+body .container .circleParent:hover{animation-play-state: paused;}
+body .container .circleParent:hover .circle::before{animation-play-state: paused;}
